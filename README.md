@@ -25,30 +25,25 @@ Repo: https://github.com/OLEGator-Screb/ThinkPad-and-Laptop-Led-Control
 ## Install
 
 ```bash
-EXT=~/.local/share/gnome-shell/extensions/thinkpad-led@example.com
-mkdir -p "$EXT"
-cp extension.js prefs.js utils.js metadata.json "$EXT/"
-mkdir -p "$EXT/schemas"
-cp schemas/*.xml "$EXT/schemas/"
-glib-compile-schemas "$EXT/schemas"
-
-# Allow writes without root:
-sudo cp 90-thinkpad-led.rules /etc/udev/rules.d/
-sudo udevadm control --reload-rules
-sudo udevadm trigger --subsystem-match=leds --action=add
-
-# Immediate (no reboot) if nodes still read-only:
-sudo chgrp wheel /sys/class/leds/*/brightness
-sudo chmod 0664 /sys/class/leds/*/brightness
-
-# Group caveat: the rule uses GROUP="wheel". On Debian/Ubuntu the admin
-# groups are usually sudo/adm, not wheel — either adapt the rule
-# (GROUP="sudo", plus `sudo adduser $USER sudo`) or rely on the
-# TAG+="uaccess" line, which covers the locally logged-in user via
-# systemd-logind regardless of group. Then reload + trigger udev, relogin.
-
-gnome-extensions enable thinkpad-led@example.com
+git clone https://github.com/OLEGator-Screb/ThinkPad-and-Laptop-Led-Control
+cd ThinkPad-and-Laptop-Led-Control
+./install.sh
 ```
+
+Skip the sudo/udev part with: `./install.sh --no-udev`
+
+The installer copies `extension.js prefs.js utils.js metadata.json` to
+`~/.local/share/gnome-shell/extensions/thinkpad-led@example.com/`,
+compiles `schemas/*.xml`, installs `90-thinkpad-led.rules` to
+`/etc/udev/rules.d/` (reloads + triggers udev, applies instant
+`chgrp wheel`/`chmod 0664` on LED brightness nodes), then enables the
+extension.
+
+Group caveat: the rule uses `GROUP="wheel"`. On Debian/Ubuntu the admin
+groups are usually sudo/adm, not wheel — either adapt the rule
+(`GROUP="sudo"`, plus `sudo adduser $USER sudo`) or rely on the
+`TAG+="uaccess"` line, which covers the locally logged-in user via
+systemd-logind regardless of group. Then reload + trigger udev, relogin.
 
 On Wayland there is no Shell restart — **log out and back in** after enabling.
 Check permissions with: `ls -l /sys/class/leds/*/brightness`
