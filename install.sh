@@ -41,7 +41,12 @@ else
 fi
 
 echo "==> Enabling extension"
-gnome-extensions enable "$UUID" || true
+if gnome-extensions list 2>/dev/null | grep -q "$UUID"; then
+  gnome-extensions enable "$UUID" || true
+else
+  echo "Shell hasn't picked up the new files yet (it scans at startup)."
+  echo "Log out and back in, then run: gnome-extensions enable $UUID"
+fi
 
 echo "Done."
 echo "NOTE: On Wayland there is no Shell restart — log out and back in."
