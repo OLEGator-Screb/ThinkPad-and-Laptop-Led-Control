@@ -35,7 +35,7 @@ cd ThinkPad-and-Laptop-Led-Control
 Skip the sudo/udev part with: `./install.sh --no-udev`
 
 The installer copies `extension.js prefs.js utils.js metadata.json` to
-`~/.local/share/gnome-shell/extensions/thinkpad-led@example.com/`,
+`~/.local/share/gnome-shell/extensions/thinkpad-led@OLEGator-Screb/`,
 compiles `schemas/*.xml`, installs `90-thinkpad-led.rules` to
 `/etc/udev/rules.d/` (reloads + triggers udev, applies instant
 `chgrp wheel`/`chmod 0664` on LED brightness nodes), then enables the
@@ -63,7 +63,7 @@ Check permissions with: `ls -l /sys/class/leds/*/brightness`
 - `extension.js` — indicator, per-LED toggles, activity polling/bindings, Morse sender.
 - `prefs.js` — per-LED switches/sliders/names/visibility/bindings, Morse group.
 - `utils.js` — shared Morse table/events, LED filter, sysfs read/write helpers.
-- `metadata.json` — uuid `thinkpad-led@example.com`, Shell 45–50.
+- `metadata.json` — uuid `thinkpad-led@OLEGator-Screb`, Shell 45–50.
 - `schemas/org.gnome.shell.extensions.thinkpad-led.gschema.xml` — `led-list`, `led-list-custom`, `led-names`, `led-quick`, `led-quick-custom`, `led-binding`, `morse-text`, `morse-led`, `morse-unit`.
 - `90-thinkpad-led.rules` — udev rule granting `wheel` + `uaccess` write access to LED brightness nodes.
 - `LICENSE` — GNU AGPL v3.0 (see file; canonical text at https://www.gnu.org/licenses/agpl-3.0.html).

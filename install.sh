@@ -17,7 +17,7 @@ done
 
 cd "$(dirname "$0")"
 
-UUID="thinkpad-led@example.com"
+UUID="thinkpad-led@OLEGator-Screb"
 EXT="$HOME/.local/share/gnome-shell/extensions/$UUID"
 
 echo "==> Installing extension files to $EXT"

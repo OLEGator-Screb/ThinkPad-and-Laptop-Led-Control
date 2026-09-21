@@ -1,5 +1,5 @@
 {
-  "uuid": "thinkpad-led@example.com",
+  "uuid": "thinkpad-led@OLEGator-Screb",
   "name": "ThinkPad and Laptop LED Control",
   "description": "Control ThinkPad sysfs LEDs from GNOME Quick Settings",
   "shell-version": ["45", "46", "47", "48", "49", "50"],
