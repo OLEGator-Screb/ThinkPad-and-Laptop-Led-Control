@@ -28,6 +28,8 @@ Repo: https://github.com/OLEGator-Screb/ThinkPad-and-Laptop-Led-Control
 git clone https://github.com/OLEGator-Screb/ThinkPad-and-Laptop-Led-Control
 cd ThinkPad-and-Laptop-Led-Control
 ./install.sh
+# if "Permission denied": bash install.sh  (upload lost the +x bit)
+# never run the whole script under sudo — it calls sudo itself for the udev part
 ```
 
 Skip the sudo/udev part with: `./install.sh --no-udev`
