@@ -27,8 +27,8 @@ Repo: https://github.com/OLEGator-Screb/ThinkPad-and-Laptop-Led-Control
 ```bash
 git clone https://github.com/OLEGator-Screb/ThinkPad-and-Laptop-Led-Control
 cd ThinkPad-and-Laptop-Led-Control
+chmod +x ./install.sh
 ./install.sh
-# if "Permission denied": bash install.sh  (upload lost the +x bit)
 # never run the whole script under sudo — it calls sudo itself for the udev part
 ```
 
