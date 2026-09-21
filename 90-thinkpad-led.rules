@@ -1,0 +1,10 @@
+# ThinkPad LEDs: allow local console user (uaccess) + wheel group to change brightness
+# Install: sudo cp 90-thinkpad-led.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=leds --action=add
+# Immediate (no reboot): sudo chgrp wheel /sys/class/leds/*/brightness; sudo chmod 0664 /sys/class/leds/*/brightness
+
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="tpacpi::*", GROUP="wheel", MODE="0664", TAG+="uaccess"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="platform::*", GROUP="wheel", MODE="0664", TAG+="uaccess"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="input*::*", GROUP="wheel", MODE="0664", TAG+="uaccess"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="tpacpi::*", RUN+="/bin/chgrp wheel /sys%p/brightness", RUN+="/bin/chmod 0664 /sys%p/brightness"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="platform::*", RUN+="/bin/chgrp wheel /sys%p/brightness", RUN+="/bin/chmod 0664 /sys%p/brightness"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="input*::*", RUN+="/bin/chgrp wheel /sys%p/brightness", RUN+="/bin/chmod 0664 /sys%p/brightness"

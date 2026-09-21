@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.thinkpad-led" path="/org/gnome/shell/extensions/thinkpad-led/">
+    <key name="led-list" type="as">
+      <default>[]</default>
+      <summary>Enabled LEDs</summary>
+      <description>Sysfs LED names to manage. Empty means autodetect all tpacpi::*, platform::* and input* LEDs.</description>
+    </key>
+    <key name="led-list-custom" type="b">
+      <default>false</default>
+      <summary>Enabled-LED list customized</summary>
+      <description>Internal flag set on the first manual enable/disable change. When false, an empty led-list means autodetect all; when true, empty means manage none.</description>
+    </key>
+    <key name="led-names" type="a{ss}">
+      <default>{}</default>
+      <summary>Display names</summary>
+      <description>Map of sysfs LED name to user-visible display name. LEDs without an entry show their sysfs name.</description>
+    </key>
+    <key name="led-quick" type="as">
+      <default>[]</default>
+      <summary>LEDs shown in quick settings</summary>
+      <description>Sysfs LED names shown in quick settings. Empty means show all enabled LEDs.</description>
+    </key>
+    <key name="led-quick-custom" type="b">
+      <default>false</default>
+      <summary>Quick-settings list customized</summary>
+      <description>Internal flag set on the first manual quick-settings visibility change. When false, an empty led-quick means show all enabled LEDs; when true, empty means show none.</description>
+    </key>
+    <key name="led-binding" type="a{ss}">
+      <default>{}</default>
+      <summary>Activity bindings</summary>
+      <description>Map of sysfs LED name to activity binding: "disk:blink", "disk:pulse", "net:blink" or "net:pulse". Absent means manual control.</description>
+    </key>
+    <key name="morse-text" type="s">
+      <default>''</default>
+      <summary>Morse message</summary>
+      <description>Last-used Morse message (ITU letters A-Z and digits 0-9); sent by the Quick Settings Morse button.</description>
+    </key>
+    <key name="morse-led" type="s">
+      <default>''</default>
+      <summary>Morse target LED</summary>
+      <description>Sysfs LED name the Morse sender blinks. Empty falls back to the currently selected quick-settings LED.</description>
+    </key>
+    <key name="morse-unit" type="i">
+      <default>120</default>
+      <summary>Morse dot unit (ms)</summary>
+      <description>Duration of one Morse time unit in milliseconds. Dot = 1 unit, dash = 3 units, gaps 1/3/7 units.</description>
+    </key>
+  </schema>
+</schemalist>
